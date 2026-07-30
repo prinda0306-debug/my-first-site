@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>會員登入 | 昱柔SPA蘆洲徐匯店</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;500;600;700&family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+
+<nav>
+  <a class="logo" href="index.html">昱柔SPA蘆洲徐匯店</a>
+  <div class="nav-links">
+    <a href="index.html">回首頁</a>
+  </div>
+</nav>
+
+<div class="auth-page">
+  <div class="auth-card">
+    <h1>會員登入</h1>
+    <p class="auth-sub">歡迎回來,登入查看你的預約紀錄</p>
+
+    <form id="login-form">
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" required maxlength="100">
+      </div>
+      <div class="form-group">
+        <label for="password">密碼</label>
+        <input type="password" id="password" name="password" required maxlength="100">
+      </div>
+      <button type="submit" class="btn btn-primary" id="submit-btn">登入</button>
+      <p class="form-msg" id="form-msg"></p>
+    </form>
+
+    <div class="auth-links">
+      <a href="forgot-password.html">忘記密碼？</a>
+      <br>
+      還沒有帳號？<a href="register.html">立即註冊</a>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  const form = document.getElementById('login-form');
+  const msgEl = document.getElementById('form-msg');
+  const submitBtn = document.getElementById('submit-btn');
+
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    msgEl.textContent = '';
+    msgEl.className = 'form-msg';
+    submitBtn.disabled = true;
+    submitBtn.textContent = '登入中...';
+
+    fetch('/api/auth/login', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        email: document.getElementById('email').value.trim(),
+        password: document.getElementById('password').value,
+      }),
+    })
+      .then(function(res){ return res.json().then(function(data){ return { ok: res.ok, data: data }; }); })
+      .then(function(r){
+        if (!r.ok) throw new Error(r.data.error || '登入失敗');
+        window.location.href = r.data.user.role === 'admin' ? 'admin.html' : 'dashboard.html';
+      })
+      .catch(function(err){
+        msgEl.textContent = err.message;
+        msgEl.className = 'form-msg error';
+        submitBtn.disabled = false;
+        submitBtn.textContent = '登入';
+      });
+  });
+})();
+</script>
+</body>
+</html>

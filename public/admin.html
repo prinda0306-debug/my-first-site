@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>管理後台 | 昱柔SPA蘆洲徐匯店</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;500;600;700&family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+
+<nav>
+  <a class="logo" href="index.html">昱柔SPA蘆洲徐匯店</a>
+  <div class="nav-links">
+    <a href="index.html">回首頁</a>
+    <span id="nav-auth"></span>
+  </div>
+</nav>
+
+<div class="dash-page">
+  <div class="dash-header">
+    <div>
+      <h1>管理後台</h1>
+      <p>所有會員的預約申請</p>
+    </div>
+  </div>
+
+  <div class="dash-card">
+    <h2>預約列表</h2>
+    <div id="booking-list">
+      <p class="empty-note">載入中...</p>
+    </div>
+  </div>
+</div>
+
+<script src="js/nav-auth.js"></script>
+<script>
+(function(){
+  const STATUS_LABEL = { pending: '待確認', confirmed: '已確認', cancelled: '已取消' };
+  const bookingList = document.getElementById('booking-list');
+
+  function escapeHtml(str){
+    const div = document.createElement('div');
+    div.textContent = str;
+    return div.innerHTML;
+  }
+
+  function checkAdmin(){
+    return fetch('/api/auth/me')
+      .then(function(res){
+        if (!res.ok) throw new Error('unauthorized');
+        return res.json();
+      })
+      .then(function(data){
+        if (data.user.role !== 'admin') throw new Error('not admin');
+      })
+      .catch(function(){
+        window.location.href = 'login.html';
+        return Promise.reject();
+      });
+  }
+
+  function renderBookings(bookings){
+    if (!bookings.length){
+      bookingList.innerHTML = '<p class="empty-note">目前還沒有預約申請。</p>';
+      return;
+    }
+    bookingList.innerHTML = bookings.map(function(b){
+      return '<div class="booking-item" data-id="' + b.id + '">' +
+        '<div class="b-main">' +
+          '<div class="b-service">' + escapeHtml(b.service) + ' - ' + escapeHtml(b.user_name) + '</div>' +
+          '<div class="b-meta">' + escapeHtml(b.user_email) + ' ・ 希望日期:' + escapeHtml(b.preferred_date) +
+            (b.note ? ' ・ ' + escapeHtml(b.note) : '') + '</div>' +
+        '</div>' +
+        '<select class="status-select" data-id="' + b.id + '">' +
+          Object.keys(STATUS_LABEL).map(function(s){
+            return '<option value="' + s + '"' + (s === b.status ? ' selected' : '') + '>' + STATUS_LABEL[s] + '</option>';
+          }).join('') +
+        '</select>' +
+      '</div>';
+    }).join('');
+
+    bookingList.querySelectorAll('.status-select').forEach(function(select){
+      select.addEventListener('change', function(){
+        const id = select.getAttribute('data-id');
+        select.disabled = true;
+        fetch('/api/admin/bookings/' + id, {
+          method: 'PATCH',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ status: select.value }),
+        })
+          .then(function(res){
+            if (!res.ok) throw new Error('更新失敗');
+          })
+          .catch(function(){
+            alert('狀態更新失敗,請重新整理頁面再試一次。');
+          })
+          .finally(function(){
+            select.disabled = false;
+          });
+      });
+    });
+  }
+
+  function loadBookings(){
+    fetch('/api/admin/bookings')
+      .then(function(res){ return res.json(); })
+      .then(function(data){ renderBookings(data.bookings || []); })
+      .catch(function(){
+        bookingList.innerHTML = '<p class="empty-note">載入失敗,請重新整理頁面。</p>';
+      });
+  }
+
+  checkAdmin().then(loadBookings);
+})();
+</script>
+</body>
+</html>
