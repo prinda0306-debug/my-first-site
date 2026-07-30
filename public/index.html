@@ -471,6 +471,122 @@
     font-size:0.95rem;
   }
 
+  /* ---------- Guestbook ---------- */
+  .guestbook{
+    background:var(--cream-2);
+  }
+
+  .guestbook-wrap{
+    max-width:700px;
+    margin:0 auto;
+  }
+
+  .guestbook-form{
+    background:var(--white-soft);
+    border-radius:24px;
+    padding:32px;
+    box-shadow:0 20px 45px rgba(74,63,56,0.08);
+    border:1px solid rgba(147,165,138,0.15);
+    margin-bottom:40px;
+  }
+
+  .guestbook-form .form-row{
+    display:flex;
+    gap:16px;
+    margin-bottom:16px;
+    flex-wrap:wrap;
+  }
+
+  .guestbook-form input,
+  .guestbook-form textarea{
+    width:100%;
+    border:1px solid rgba(147,165,138,0.3);
+    background:var(--cream);
+    border-radius:14px;
+    padding:14px 18px;
+    font-family:inherit;
+    font-size:0.95rem;
+    color:var(--ink);
+    resize:vertical;
+  }
+
+  .guestbook-form input:focus,
+  .guestbook-form textarea:focus{
+    outline:none;
+    border-color:var(--morandi-green);
+    background:var(--white-soft);
+  }
+
+  .guestbook-form input{
+    flex:1 1 200px;
+  }
+
+  .guestbook-form textarea{
+    min-height:90px;
+  }
+
+  .guestbook-form button{
+    border:none;
+    cursor:pointer;
+    font-family:inherit;
+    display:block;
+    margin-left:auto;
+  }
+
+  .guestbook-msg{
+    font-size:0.88rem;
+    margin-top:10px;
+    min-height:1.2em;
+  }
+  .guestbook-msg.error{ color:var(--terracotta-dark); }
+  .guestbook-msg.success{ color:var(--morandi-green-dark); }
+
+  .guestbook-list{
+    display:flex;
+    flex-direction:column;
+    gap:16px;
+  }
+
+  .guestbook-item{
+    background:var(--white-soft);
+    border-radius:18px;
+    padding:20px 24px;
+    box-shadow:0 12px 28px rgba(74,63,56,0.06);
+    border-left:4px solid var(--morandi-green);
+  }
+
+  .guestbook-item .gi-head{
+    display:flex;
+    justify-content:space-between;
+    align-items:baseline;
+    margin-bottom:6px;
+    gap:12px;
+  }
+
+  .guestbook-item .gi-name{
+    font-weight:700;
+    color:var(--terracotta-dark);
+  }
+
+  .guestbook-item .gi-time{
+    font-size:0.78rem;
+    color:var(--ink-soft);
+    white-space:nowrap;
+  }
+
+  .guestbook-item .gi-message{
+    color:var(--ink);
+    font-size:0.95rem;
+    word-break:break-word;
+  }
+
+  .guestbook-empty{
+    text-align:center;
+    color:var(--ink-soft);
+    font-size:0.9rem;
+    padding:20px 0;
+  }
+
   /* ---------- Footer ---------- */
   footer{
     text-align:center;
@@ -499,6 +615,7 @@
   <div class="nav-links">
     <a href="#about">關於我</a>
     <a href="#services">服務項目</a>
+    <a href="#guestbook">留言板</a>
     <a href="#contact">聯絡方式</a>
   </div>
 </nav>
@@ -583,6 +700,31 @@
   </div>
 </section>
 
+<section class="guestbook" id="guestbook">
+  <div class="section-head">
+    <span class="tag">GUESTBOOK</span>
+    <h2>留言板</h2>
+    <p>留下你的名字與一句話,讓珍珍知道你來過</p>
+  </div>
+
+  <div class="guestbook-wrap">
+    <form class="guestbook-form" id="guestbook-form">
+      <div class="form-row">
+        <input type="text" id="gb-name" name="name" placeholder="你的名字" maxlength="50" required>
+      </div>
+      <div class="form-row">
+        <textarea id="gb-message" name="message" placeholder="想對珍珍說的一句話" maxlength="300" required></textarea>
+      </div>
+      <button type="submit" class="btn btn-primary">送出留言</button>
+      <p class="guestbook-msg" id="gb-status"></p>
+    </form>
+
+    <div class="guestbook-list" id="guestbook-list">
+      <p class="guestbook-empty">載入中...</p>
+    </div>
+  </div>
+</section>
+
 <section class="quote-section">
   <p>「療癒,不是急著變好,<br>而是願意溫柔地陪自己走一段路。」</p>
   <span>— 珍珍</span>
@@ -604,5 +746,88 @@
   © 2026 珍珍 Jen Jen · 花晶療癒師 · All rights reserved.
 </footer>
 
+<script>
+(function(){
+  const form = document.getElementById('guestbook-form');
+  const nameInput = document.getElementById('gb-name');
+  const messageInput = document.getElementById('gb-message');
+  const statusEl = document.getElementById('gb-status');
+  const listEl = document.getElementById('guestbook-list');
+
+  function escapeHtml(str){
+    const div = document.createElement('div');
+    div.textContent = str;
+    return div.innerHTML;
+  }
+
+  function formatTime(iso){
+    const d = new Date(iso.replace(' ', 'T') + 'Z');
+    if (isNaN(d.getTime())) return '';
+    return d.toLocaleString('zh-TW', { year:'numeric', month:'2-digit', day:'2-digit', hour:'2-digit', minute:'2-digit' });
+  }
+
+  function renderMessages(messages){
+    if (!messages.length){
+      listEl.innerHTML = '<p class="guestbook-empty">還沒有留言,成為第一個留言的人吧！</p>';
+      return;
+    }
+    listEl.innerHTML = messages.map(function(m){
+      return '<div class="guestbook-item">' +
+        '<div class="gi-head">' +
+          '<span class="gi-name">' + escapeHtml(m.name) + '</span>' +
+          '<span class="gi-time">' + formatTime(m.created_at) + '</span>' +
+        '</div>' +
+        '<div class="gi-message">' + escapeHtml(m.message) + '</div>' +
+      '</div>';
+    }).join('');
+  }
+
+  function loadMessages(){
+    fetch('/api/messages')
+      .then(function(res){ return res.json(); })
+      .then(renderMessages)
+      .catch(function(){
+        listEl.innerHTML = '<p class="guestbook-empty">留言載入失敗,請稍後再試。</p>';
+      });
+  }
+
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    statusEl.textContent = '';
+    statusEl.className = 'guestbook-msg';
+
+    const name = nameInput.value.trim();
+    const message = messageInput.value.trim();
+    if (!name || !message){
+      statusEl.textContent = '請輸入名字與留言內容';
+      statusEl.className = 'guestbook-msg error';
+      return;
+    }
+
+    fetch('/api/messages', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ name: name, message: message })
+    })
+      .then(function(res){
+        if (!res.ok) return res.json().then(function(d){ throw new Error(d.error || '送出失敗'); });
+        return res.json();
+      })
+      .then(function(){
+        nameInput.value = '';
+        messageInput.value = '';
+        statusEl.textContent = '留言成功！';
+        statusEl.className = 'guestbook-msg success';
+        loadMessages();
+      })
+      .catch(function(err){
+        statusEl.textContent = err.message || '送出失敗,請稍後再試。';
+        statusEl.className = 'guestbook-msg error';
+      });
+  });
+
+  loadMessages();
+})();
+</script>
 </body>
 </html>
