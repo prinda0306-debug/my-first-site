@@ -1,8 +1,8 @@
 {
-  "name": "shiguanghua-website",
+  "name": "yurou-spa-luzhou-xuhui",
   "version": "1.0.0",
   "private": true,
-  "description": "拾光花官網 - 花晶身心調理・肌膚管理・健康檢測",
+  "description": "昱柔SPA蘆洲徐匯店官網 - 花晶身心調理・肌膚管理・健康檢測",
   "main": "server.js",
   "scripts": {
     "start": "node server.js"
