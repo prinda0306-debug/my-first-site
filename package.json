@@ -1,8 +1,8 @@
 {
-  "name": "my-first-site",
+  "name": "shiguanghua-website",
   "version": "1.0.0",
   "private": true,
-  "description": "珍珍的自我介紹網頁,附留言板",
+  "description": "拾光花官網 - 花晶身心調理・肌膚管理・健康檢測",
   "main": "server.js",
   "scripts": {
     "start": "node server.js"
@@ -11,7 +11,6 @@
     "node": ">=22.5.0"
   },
   "dependencies": {
-    "@anthropic-ai/sdk": "^0.115.0",
     "express": "^4.19.2"
   }
 }

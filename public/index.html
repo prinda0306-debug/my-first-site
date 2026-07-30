@@ -3,7 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>珍珍 | 花晶療癒師</title>
+<title>拾光花 ShiGuangHua | 花晶身心調理・肌膚管理・健康檢測</title>
+<meta name="description" content="拾光花：透過花晶、身體調理、肌膚管理與健康檢測，陪伴你重新傾聽身體的聲音，找回屬於自己的溫柔與平衡。">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;500;600;700&family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
 <style>
@@ -155,9 +156,9 @@
   }
 
   .hero-text h1{
-    font-size:3.4rem;
+    font-size:3.2rem;
     color:var(--ink);
-    line-height:1.25;
+    line-height:1.3;
     margin-bottom:18px;
   }
 
@@ -166,7 +167,7 @@
   }
 
   .hero-text p.role{
-    font-size:1.25rem;
+    font-size:1.2rem;
     color:var(--morandi-green-dark);
     font-weight:500;
     margin-bottom:20px;
@@ -258,9 +259,11 @@
     align-items:center;
     gap:8px;
     animation:floaty 4s ease-in-out infinite;
+    white-space:nowrap;
   }
-  .tag-1{ top:10%; left:-8%; animation-delay:0s;}
-  .tag-2{ bottom:8%; right:-10%; animation-delay:1.5s;}
+  .tag-1{ top:8%; left:-10%; animation-delay:0s;}
+  .tag-2{ bottom:6%; right:-12%; animation-delay:1.5s;}
+  .tag-3{ top:48%; right:-16%; animation-delay:0.8s;}
 
   @keyframes floaty{
     0%,100%{transform:translateY(0);}
@@ -437,7 +440,7 @@
 
   .contact-card{
     max-width:560px;
-    margin:0 auto;
+    margin:0 auto 50px;
     background:var(--white-soft);
     border-radius:26px;
     padding:50px 40px;
@@ -471,152 +474,20 @@
     font-size:0.95rem;
   }
 
-  /* ---------- Guestbook ---------- */
-  .guestbook{
-    background:var(--cream-2);
-  }
-
-  .guestbook-wrap{
-    max-width:700px;
+  .map-wrap{
+    max-width:900px;
     margin:0 auto;
-  }
-
-  .guestbook-form{
-    background:var(--white-soft);
-    border-radius:24px;
-    padding:32px;
-    box-shadow:0 20px 45px rgba(74,63,56,0.08);
+    border-radius:26px;
+    overflow:hidden;
+    box-shadow:0 25px 50px rgba(74,63,56,0.1);
     border:1px solid rgba(147,165,138,0.15);
-    margin-bottom:40px;
   }
 
-  .guestbook-form .form-row{
-    display:flex;
-    gap:16px;
-    margin-bottom:16px;
-    flex-wrap:wrap;
-  }
-
-  .guestbook-form input,
-  .guestbook-form textarea{
+  .map-wrap iframe{
     width:100%;
-    border:1px solid rgba(147,165,138,0.3);
-    background:var(--cream);
-    border-radius:14px;
-    padding:14px 18px;
-    font-family:inherit;
-    font-size:0.95rem;
-    color:var(--ink);
-    resize:vertical;
-  }
-
-  .guestbook-form input:focus,
-  .guestbook-form textarea:focus{
-    outline:none;
-    border-color:var(--morandi-green);
-    background:var(--white-soft);
-  }
-
-  .guestbook-form input{
-    flex:1 1 200px;
-  }
-
-  .guestbook-form textarea{
-    min-height:90px;
-  }
-
-  .guestbook-form button{
-    border:none;
-    cursor:pointer;
-    font-family:inherit;
+    height:380px;
+    border:0;
     display:block;
-    margin-left:auto;
-  }
-
-  .guestbook-msg{
-    font-size:0.88rem;
-    margin-top:10px;
-    min-height:1.2em;
-  }
-  .guestbook-msg.error{ color:var(--terracotta-dark); }
-  .guestbook-msg.success{ color:var(--morandi-green-dark); }
-
-  .guestbook-list{
-    display:flex;
-    flex-direction:column;
-    gap:16px;
-  }
-
-  .guestbook-item{
-    background:var(--white-soft);
-    border-radius:18px;
-    padding:20px 24px;
-    box-shadow:0 12px 28px rgba(74,63,56,0.06);
-    border-left:4px solid var(--morandi-green);
-  }
-
-  .guestbook-item .gi-head{
-    display:flex;
-    justify-content:space-between;
-    align-items:baseline;
-    margin-bottom:6px;
-    gap:12px;
-  }
-
-  .guestbook-item .gi-name{
-    font-weight:700;
-    color:var(--terracotta-dark);
-  }
-
-  .guestbook-item .gi-time{
-    font-size:0.78rem;
-    color:var(--ink-soft);
-    white-space:nowrap;
-  }
-
-  .guestbook-item .gi-message{
-    color:var(--ink);
-    font-size:0.95rem;
-    word-break:break-word;
-  }
-
-  .guestbook-empty{
-    text-align:center;
-    color:var(--ink-soft);
-    font-size:0.9rem;
-    padding:20px 0;
-  }
-
-  .ai-summary-box{
-    text-align:center;
-    margin-bottom:32px;
-  }
-
-  .ai-summary-box .btn{
-    cursor:pointer;
-    font-size:0.9rem;
-  }
-
-  .ai-summary-box .btn:disabled{
-    opacity:0.6;
-    cursor:not-allowed;
-    transform:none;
-  }
-
-  .ai-summary-result{
-    margin-top:16px;
-    font-size:1rem;
-    color:var(--morandi-green-dark);
-    font-style:italic;
-    line-height:1.7;
-    max-width:560px;
-    margin-left:auto;
-    margin-right:auto;
-  }
-
-  .ai-summary-result.error{
-    color:var(--terracotta-dark);
-    font-style:normal;
   }
 
   /* ---------- Footer ---------- */
@@ -636,19 +507,19 @@
     .about-grid{grid-template-columns:1fr;}
     .services-grid{grid-template-columns:1fr;}
     .nav-links{display:none;}
-    .hero-text h1{font-size:2.4rem;}
+    .hero-text h1{font-size:2.3rem;}
+    .float-tag{display:none;}
   }
 </style>
 </head>
 <body>
 
 <nav>
-  <div class="logo">珍珍 Jen Jen</div>
+  <div class="logo">拾光花 ShiGuangHua</div>
   <div class="nav-links">
-    <a href="#about">關於我</a>
+    <a href="#about">我的故事</a>
     <a href="#services">服務項目</a>
-    <a href="#guestbook">留言板</a>
-    <a href="#contact">聯絡方式</a>
+    <a href="#contact">聯絡資訊</a>
   </div>
 </nav>
 
@@ -659,49 +530,50 @@
 
   <div class="hero-inner">
     <div class="hero-text">
-      <span class="eyebrow">FLOWER ESSENCE HEALING</span>
-      <h1>你好,我是 <span>珍珍</span><br>用花的能量,陪你回到自己</h1>
-      <p class="role">花晶療癒師</p>
-      <p class="desc">相信每一種植物都有屬於自己的頻率與溫柔。我喜歡莫蘭迪綠帶來的沉靜感,也喜歡透過花晶,陪伴每一個需要被理解、被療癒的靈魂,慢慢找回內在的平衡與安定。</p>
+      <span class="eyebrow">FLOWER ESSENCE · WELLNESS</span>
+      <h1>每個人,都值得<span>重新愛自己</span></h1>
+      <p class="role">花晶身心調理・肌膚管理・健康檢測</p>
+      <p class="desc">透過花晶能量、身體調理、肌膚管理與健康檢測,拾光花陪伴你重新傾聽身體的聲音,找回屬於自己的溫柔與平衡。獻給每一位願意花時間、花心力好好照顧自己的人。</p>
       <div class="hero-buttons">
-        <a href="#contact" class="btn btn-primary">預約諮詢</a>
-        <a href="#about" class="btn btn-outline">認識我</a>
+        <a href="#contact" class="btn btn-primary">立即預約</a>
+        <a href="#about" class="btn btn-outline">認識拾光花</a>
       </div>
     </div>
 
     <div class="hero-visual">
       <div class="avatar-frame">
-        <span class="avatar-emoji">🌿</span>
+        <span class="avatar-emoji">🌸</span>
       </div>
-      <div class="float-tag tag-1">🌸 花晶療癒</div>
-      <div class="float-tag tag-2">🍃 莫蘭迪綠愛好者</div>
+      <div class="float-tag tag-1">🌿 花晶調理</div>
+      <div class="float-tag tag-2">🐿️ 溫暖陪伴</div>
+      <div class="float-tag tag-3">☀️ 清新日常</div>
     </div>
   </div>
 </section>
 
 <section class="about" id="about">
   <div class="section-head">
-    <span class="tag">ABOUT ME</span>
-    <h2>關於我</h2>
-    <p>一個喜歡植物、喜歡安靜色調,也喜歡陪伴他人療癒的人</p>
+    <span class="tag">MY STORY</span>
+    <h2>我的故事</h2>
+    <p>一個喜歡植物、喜歡莫蘭迪色調,也喜歡陪伴他人好好生活的人</p>
   </div>
 
   <div class="about-grid">
     <div class="about-card">
-      <h3>喜歡的事物</h3>
-      <p>生活裡的小小堅持,是我能量的來源。</p>
+      <h3>拾光花,是什麼意思？</h3>
+      <p>「拾光」是拾起時光裡的每一份美好,「花」則是花晶能量帶來的溫柔力量。</p>
       <div class="love-list">
         <span class="love-chip">🍃 莫蘭迪綠</span>
-        <span class="love-chip">🌸 花晶療癒</span>
-        <span class="love-chip">🕯️ 靜心時光</span>
-        <span class="love-chip">🌾 自然植物</span>
+        <span class="love-chip">🌸 花晶調理</span>
+        <span class="love-chip">🐇 小動物系日常</span>
+        <span class="love-chip">☕ 奶茶色暖光</span>
       </div>
     </div>
 
     <div class="about-text">
-      <p>我是 <strong>珍珍</strong>,一位專職的 <strong>花晶療癒師</strong>。長期投入花晶能量療癒的學習與實踐,擅長透過細膩的引導與傾聽,協助每一位個案梳理情緒、釋放壓力,重新找回內心的平靜與力量。</p>
-      <p>我特別鍾情於<strong>莫蘭迪綠</strong>的柔和與沉穩 —— 那是一種不張揚卻很有力量的顏色,就像我理解的療癒:不急躁,卻能一點一滴地帶來改變。</p>
-      <p>如果你也正在尋找一份溫柔而踏實的陪伴,歡迎讓花晶的能量,與你相遇。</p>
+      <p>我是 <strong>拾光花</strong> 的創辦人。曾經也在忙碌的生活裡,忘了好好照顧自己 —— 直到接觸了花晶,才發現原來身體一直在說話,只是我們太少停下來聽。</p>
+      <p>從那之後,我投入花晶身心調理、肌膚管理與健康檢測的學習與實踐,希望用最溫柔、最細膩的方式,陪伴每一位個案重新認識自己的身體,找回屬於自己的節奏。</p>
+      <p>我相信,照顧自己不是奢侈,而是一種必要的溫柔。如果你也願意花時間投資自己,歡迎讓拾光花,陪你走這一段路。</p>
     </div>
   </div>
 </section>
@@ -710,189 +582,63 @@
   <div class="section-head">
     <span class="tag">WHAT I OFFER</span>
     <h2>服務項目</h2>
-    <p>依照每個人當下的狀態,量身安排最適合的療癒方式</p>
+    <p>依照每個人當下的身體狀態,量身安排最適合的調理方式</p>
   </div>
 
   <div class="services-grid">
     <div class="service-card">
       <span class="service-icon">🌺</span>
-      <h3>花晶個案療癒</h3>
-      <p>一對一深度諮詢,透過花晶能量協助調整身心狀態,釋放深層情緒壓力。</p>
+      <h3>花晶身體調理</h3>
+      <p>一對一深度諮詢,透過花晶能量協助調整身心狀態,釋放深層壓力與疲憊。</p>
     </div>
     <div class="service-card">
-      <span class="service-icon">🧘‍♀️</span>
-      <h3>能量平衡引導</h3>
-      <p>結合呼吸與靜心練習,協助你重新連結內在,找回穩定與安定感。</p>
+      <span class="service-icon">🌷</span>
+      <h3>肌膚管理</h3>
+      <p>專業肌膚檢測與保養規劃,由內而外調理,找回健康透亮的自然光采。</p>
     </div>
     <div class="service-card">
-      <span class="service-icon">📖</span>
-      <h3>身心狀態諮詢</h3>
-      <p>陪伴你梳理生活中的困惑與情緒糾結,給予溫柔而具體的建議。</p>
-    </div>
-  </div>
-</section>
-
-<section class="guestbook" id="guestbook">
-  <div class="section-head">
-    <span class="tag">GUESTBOOK</span>
-    <h2>留言板</h2>
-    <p>留下你的名字與一句話,讓珍珍知道你來過</p>
-  </div>
-
-  <div class="guestbook-wrap">
-    <form class="guestbook-form" id="guestbook-form">
-      <div class="form-row">
-        <input type="text" id="gb-name" name="name" placeholder="你的名字" maxlength="50" required>
-      </div>
-      <div class="form-row">
-        <textarea id="gb-message" name="message" placeholder="想對珍珍說的一句話" maxlength="300" required></textarea>
-      </div>
-      <button type="submit" class="btn btn-primary">送出留言</button>
-      <p class="guestbook-msg" id="gb-status"></p>
-    </form>
-
-    <div class="ai-summary-box">
-      <button type="button" class="btn btn-outline" id="ai-summary-btn">✨ AI 一句話總結</button>
-      <p class="ai-summary-result" id="ai-summary-result"></p>
-    </div>
-
-    <div class="guestbook-list" id="guestbook-list">
-      <p class="guestbook-empty">載入中...</p>
+      <span class="service-icon">🩺</span>
+      <h3>健康檢測</h3>
+      <p>全面性的健康檢測與狀態評估,幫助你掌握身體現況,提早預防、及早調整。</p>
     </div>
   </div>
 </section>
 
 <section class="quote-section">
-  <p>「療癒,不是急著變好,<br>而是願意溫柔地陪自己走一段路。」</p>
-  <span>— 珍珍</span>
+  <p>「照顧自己,不是奢侈,<br>而是一種必要的溫柔。」</p>
+  <span>— 拾光花</span>
 </section>
 
 <section class="contact" id="contact">
+  <div class="section-head">
+    <span class="tag">GET IN TOUCH</span>
+    <h2>聯絡資訊</h2>
+    <p>歡迎透過以下方式與我們聯繫,預約專屬於你的調理旅程</p>
+  </div>
+
   <div class="contact-card">
-    <h3>與我聯繫</h3>
-    <p>歡迎透過以下方式與我預約諮詢,期待陪伴你走一段療癒旅程。</p>
+    <h3>與拾光花聯繫</h3>
+    <p>歡迎來信預約諮詢,期待陪伴你走一段重新愛自己的旅程。</p>
     <div class="contact-info">
-      <div>📧 hello@jenjen-healing.com</div>
-      <div>📍 台灣</div>
+      <div>📧 prinda0306@gmail.com</div>
+      <div>📍 新北市蘆洲區永安北路二段8巷2號3樓</div>
     </div>
-    <a href="#" class="btn btn-primary">立即預約</a>
+    <a href="mailto:prinda0306@gmail.com" class="btn btn-primary">立即預約</a>
+  </div>
+
+  <div class="map-wrap">
+    <iframe
+      src="https://www.google.com/maps?q=新北市蘆洲區永安北路二段8巷2號3樓&output=embed"
+      loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade"
+      title="拾光花地圖位置">
+    </iframe>
   </div>
 </section>
 
 <footer>
-  © 2026 珍珍 Jen Jen · 花晶療癒師 · All rights reserved.
+  © 2026 拾光花 ShiGuangHua · 花晶身心調理 · All rights reserved.
 </footer>
 
-<script>
-(function(){
-  const form = document.getElementById('guestbook-form');
-  const nameInput = document.getElementById('gb-name');
-  const messageInput = document.getElementById('gb-message');
-  const statusEl = document.getElementById('gb-status');
-  const listEl = document.getElementById('guestbook-list');
-
-  function escapeHtml(str){
-    const div = document.createElement('div');
-    div.textContent = str;
-    return div.innerHTML;
-  }
-
-  function formatTime(iso){
-    const d = new Date(iso.replace(' ', 'T') + 'Z');
-    if (isNaN(d.getTime())) return '';
-    return d.toLocaleString('zh-TW', { year:'numeric', month:'2-digit', day:'2-digit', hour:'2-digit', minute:'2-digit' });
-  }
-
-  function renderMessages(messages){
-    if (!messages.length){
-      listEl.innerHTML = '<p class="guestbook-empty">還沒有留言,成為第一個留言的人吧！</p>';
-      return;
-    }
-    listEl.innerHTML = messages.map(function(m){
-      return '<div class="guestbook-item">' +
-        '<div class="gi-head">' +
-          '<span class="gi-name">' + escapeHtml(m.name) + '</span>' +
-          '<span class="gi-time">' + formatTime(m.created_at) + '</span>' +
-        '</div>' +
-        '<div class="gi-message">' + escapeHtml(m.message) + '</div>' +
-      '</div>';
-    }).join('');
-  }
-
-  function loadMessages(){
-    fetch('/api/messages')
-      .then(function(res){ return res.json(); })
-      .then(renderMessages)
-      .catch(function(){
-        listEl.innerHTML = '<p class="guestbook-empty">留言載入失敗,請稍後再試。</p>';
-      });
-  }
-
-  form.addEventListener('submit', function(e){
-    e.preventDefault();
-    statusEl.textContent = '';
-    statusEl.className = 'guestbook-msg';
-
-    const name = nameInput.value.trim();
-    const message = messageInput.value.trim();
-    if (!name || !message){
-      statusEl.textContent = '請輸入名字與留言內容';
-      statusEl.className = 'guestbook-msg error';
-      return;
-    }
-
-    fetch('/api/messages', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ name: name, message: message })
-    })
-      .then(function(res){
-        if (!res.ok) return res.json().then(function(d){ throw new Error(d.error || '送出失敗'); });
-        return res.json();
-      })
-      .then(function(){
-        nameInput.value = '';
-        messageInput.value = '';
-        statusEl.textContent = '留言成功！';
-        statusEl.className = 'guestbook-msg success';
-        loadMessages();
-      })
-      .catch(function(err){
-        statusEl.textContent = err.message || '送出失敗,請稍後再試。';
-        statusEl.className = 'guestbook-msg error';
-      });
-  });
-
-  loadMessages();
-
-  const summaryBtn = document.getElementById('ai-summary-btn');
-  const summaryResult = document.getElementById('ai-summary-result');
-  const summaryBtnDefaultText = summaryBtn.textContent;
-
-  summaryBtn.addEventListener('click', function(){
-    summaryBtn.disabled = true;
-    summaryBtn.textContent = 'AI 思考中...';
-    summaryResult.textContent = '';
-    summaryResult.className = 'ai-summary-result';
-
-    fetch('/api/summarize', { method: 'POST' })
-      .then(function(res){
-        return res.json().then(function(data){ return { ok: res.ok, data: data }; });
-      })
-      .then(function(r){
-        if (!r.ok) throw new Error(r.data.error || 'AI 總結失敗,請稍後再試。');
-        summaryResult.textContent = r.data.summary;
-      })
-      .catch(function(err){
-        summaryResult.textContent = err.message;
-        summaryResult.className = 'ai-summary-result error';
-      })
-      .finally(function(){
-        summaryBtn.disabled = false;
-        summaryBtn.textContent = summaryBtnDefaultText;
-      });
-  });
-})();
-</script>
 </body>
 </html>
