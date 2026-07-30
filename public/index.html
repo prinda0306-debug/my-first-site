@@ -241,6 +241,15 @@
     inset:14px;
     border-radius:50% 50% 46% 46% / 55% 55% 45% 45%;
     border:1.5px dashed rgba(255,255,255,0.7);
+    z-index:2;
+    pointer-events:none;
+  }
+
+  .avatar-photo{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    border-radius:50% 50% 46% 46% / 55% 55% 45% 45%;
   }
 
   .avatar-emoji{
@@ -542,7 +551,7 @@
 
     <div class="hero-visual">
       <div class="avatar-frame">
-        <span class="avatar-emoji">🌸</span>
+        <img class="avatar-photo" src="images/founder.jpg" alt="昱柔SPA蘆洲徐匯店 創辦人">
       </div>
       <div class="float-tag tag-1">🌿 花晶調理</div>
       <div class="float-tag tag-2">🐿️ 溫暖陪伴</div>
