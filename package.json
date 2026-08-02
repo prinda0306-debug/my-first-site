@@ -1,8 +1,8 @@
 {
-  "name": "yurou-spa-luzhou-xuhui",
+  "name": "shiguang-flower-studio",
   "version": "1.0.0",
   "private": true,
-  "description": "昱柔SPA蘆洲徐匯店官網 - 花晶身心調理・肌膚管理・健康檢測",
+  "description": "拾光花官網 - AI健康檢測・澳洲花晶・手技按摩・肌膚管理",
   "main": "server.js",
   "scripts": {
     "start": "node server.js"
